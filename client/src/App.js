@@ -1,8 +1,9 @@
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
-import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
-import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
+import SongResults from './Pages/SongResults';
+import SongDetails from './Pages/SongDetails';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
@@ -12,18 +13,17 @@ const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
-  const [searchInput, setSearchInput] = useState("");
-  const [songs, setSongs] = useState("");
+  const [song, setSong] = useState("");
 
-   useEffect(() => {
+  useEffect(() => {
     //API Access Token
-  /*   axios.post('https://accounts.spotify.com/api/token', {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
-    })
-    .then(response => setAccessToken(response.data.access_token)) */
+    /*   axios.post('https://accounts.spotify.com/api/token', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+      })
+      .then(response => setAccessToken(response.data.access_token)) */
     var authParams = {
       method: 'POST',
       headers: {
@@ -36,61 +36,19 @@ function App() {
       .then(data => setAccessToken(data.access_token))
   }, [])
 
-  function searchSongs() {
-      //First need to use the Search spotify endpoint to get the songs under the name that user inputs
-      axios.get('https://api.spotify.com/v1/search?q=' + searchInput + '&type=track&limit=50&market=US', {
-        headers: {
-          'Authorization': 'Bearer ' + accessToken
-        }
-      })
-      .then(response => {
-        setSongs(response.data.tracks.items);
-      })
-      .catch(err => console.log(err));
-      //Next 
 
-      console.log(songs);
+  //Pulls data from child element
+  const pull_data = (song) => {
+    setSong(song); 
   }
 
   return (
-    <div className="App m-5">
-      <Container>
-        <h1>Song Details</h1>
-        <InputGroup className='mb-3' size='lg'>
-          <FormControl
-            placeholder='Search for Song/Band'
-            type='input'
-            onKeyPress={event => {
-              if (event.key == "Enter") {
-                searchSongs();
-              }
-            }}
-            onChange={event => setSearchInput(event.target.value)}
-          />
-          <Button onClick={searchSongs}>
-            Search
-          </Button>
-        </InputGroup>
-      </Container>
-      <Container>
-        <Row className='mx-2 row row-cols-4'>
-          {Array.isArray(songs) ?
-          songs.map( (song, i) => {
-            console.log(song);
-            return (
-              <Card>
-                <Card.Img src={song.album.images[0].url} />
-                <Card.Body>
-                  <Card.Title>{song.name}</Card.Title>
-                </Card.Body>
-              </Card>
-            )
-          })
-        : null
-        }
+    <div className='App'>
+    <Routes>
+      <Route path='/' element={<SongResults func={pull_data} accessToken={accessToken} />} />
+      <Route path='/songDetails' element={<SongDetails song={song} />} />
 
-        </Row>
-      </Container>
+    </Routes>
     </div>
   );
 }

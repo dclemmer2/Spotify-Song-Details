@@ -1,10 +1,70 @@
-$darkBackground:#0c0c0c;
-
 html {
-    background-color: $darkBackground;
+    min-height: 100%;
+    position: relative;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url("../public/dark-music-wallpapers.png");
 }
 
-.App {
-    color: white;
-    background-color: $darkBackground;
+body {
+    color: white !important;
+    background-color: transparent !important;
+    padding-bottom: 80px;
+    /* Takes into account height of the footer */
+}
+
+@media (min-width: 992px) {
+    .App {
+        width: 90% !important;
+    }
+
+    #root {
+        width: 80%;
+    }
+}
+
+.card {
+    height: 95%!important;
+}
+
+.card-title {
+    display: -webkit-box;
+    max-width: 400px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#previewSong {
+    transform: translateY(calc(-65px - 100%)) !important;
+}
+
+button {
+    background-color: #00cb00 !important;
+    border: none !important;
+}
+
+button:hover {
+    background-color: #00cb00c4 !important;
+}
+
+.title {
+    font-size: 4em;
+}
+
+.grey-text {
+    color: #bcbcbc;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    /* Height of the footer */
+    background: grey;
 }

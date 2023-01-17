@@ -2,7 +2,7 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import SongResults from './Pages/SongResults';
+import SearchSong from './Pages/SearchSong';
 import SongDetails from './Pages/SongDetails';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -43,13 +43,10 @@ function App() {
   }
 
   return (
-    <div className='App'>
     <Routes>
-      <Route path='/' element={<SongResults func={pull_data} accessToken={accessToken} />} />
+      <Route path='/' element={<SearchSong func={pull_data} accessToken={accessToken} />} />
       <Route path='/songDetails' element={<SongDetails song={song} />} />
-
     </Routes>
-    </div>
   );
 }
 

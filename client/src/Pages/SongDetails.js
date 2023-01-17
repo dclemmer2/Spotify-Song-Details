@@ -5,6 +5,7 @@ import { Container, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function SongDetails({ song }) {
+    
     const navigate = useNavigate();
     console.log(song);
 
@@ -21,29 +22,32 @@ function SongDetails({ song }) {
     }
 
     return (
-        <div className='App m-md-5' >
-            <Container>
-                <h1>{song.name}</h1>
+        <Container className='App m-md-5 mt-3' >
+            <p className='mb-0 grey-text'>Song</p>
+            <h1 className='mb-5 title'>{song.name}</h1>
 
-                <Row className='mx-2 row'>
-                    <Col className='col-12 col-xl-6 col-lg-6 col-md-6'>
-                        <img className='w-100' src={song.album.images[0].url}></img>
-                    </Col>
-                    <Col className='col-12 col-xl-6 col-lg-6 col-md-6'>
-                        <iframe className='d-block' src={song.preview_url} title="W3Schools Free Online Web Tutorials"></iframe>
-                        <p className='d-inline-block'>Song Length</p> <h5 className='d-inline-block'>{msToTime(song.duration_ms)}</h5>
-                        <h5></h5><p>Artist/Band: {song.artists[0].name} </p>
-                        <h5></h5><p>Release Date: {song.album.release_date}</p>
-                        <h5></h5><p>Album Name: {song.album.name}</p>
-                        <h5></h5><p>Link to Spotify in <a href={song.external_urls.spotify}>Browser</a> or in <a href={song.uri}>Desktop App</a></p>
-                    </Col>
-                </Row>
-                <Button onClick={() => {
-                    navigate("/");
-                }}>Return to Search</Button>
-            </Container>
-        </div>
-
+            <Row className='mx-2 row'>
+                <Col className='col-12 col-xl-6 col-lg-6 col-md-6'>
+                    <img className='w-100' src={song.album.images[0].url}></img>
+                </Col>
+                <Col className='col-12 col-xl-6 col-lg-6 col-md-6'>
+                    <p className='mb-0 grey-text'>Album Name</p>
+                    <h5 className='mb-3'>{song.album.name}</h5>
+                    <p className='mb-0 grey-text'>Artist/Band</p>
+                    <h5 className='mb-3'>{song.artists[0].name}</h5>
+                    <p className='mb-0 grey-text'>Song Length</p>
+                    <h5 className='mb-3'>{msToTime(song.duration_ms)}</h5>
+                    <p className='mb-0 grey-text'>Release Date</p>
+                    <h5>{song.album.release_date}</h5>
+                    <iframe src={song.preview_url} title="W3Schools Free Online Web Tutorials"></iframe>
+                    <p id='previewSong' className='grey-text'>Preview of Song</p>
+                    <h5></h5><p>Link to Spotify in <a href={song.external_urls.spotify}>Browser</a> or in <a href={song.uri}>Desktop App</a></p>
+                </Col>
+            </Row>
+            <Button className='mt-4' onClick={() => {
+                navigate("/");
+            }}>Return to Search</Button>
+        </Container>
     );
 }
 

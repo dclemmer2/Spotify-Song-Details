@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { Container, InputGroup, FormControl, Button, Row, Card, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../App.scss';
 
 function SongResults({ accessToken, func }) {
     const [searchInput, setSearchInput] = useState("");

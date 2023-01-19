@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/song-spot/static/css/main.aca147b1.css",
+    "main.js": "/song-spot/static/js/main.46a38db5.js",
+    "static/js/787.3d0a3ada.chunk.js": "/song-spot/static/js/787.3d0a3ada.chunk.js",
+    "static/media/dark-music-wallpapers.png": "/song-spot/static/media/dark-music-wallpapers.b3e4a6432af7b6d7b518.png",
+    "index.html": "/song-spot/index.html",
+    "main.aca147b1.css.map": "/song-spot/static/css/main.aca147b1.css.map",
+    "main.46a38db5.js.map": "/song-spot/static/js/main.46a38db5.js.map",
+    "787.3d0a3ada.chunk.js.map": "/song-spot/static/js/787.3d0a3ada.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aca147b1.css",
+    "static/js/main.46a38db5.js"
+  ]
+}
